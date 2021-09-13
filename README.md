@@ -39,6 +39,10 @@ Exemplar docker run coomand with geneCoverage.py execution as follows:
 docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./ExnVerify.py input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
 ```
 
+The main output of the ``geneCoverage.py`` is the figure with chromosome region where all exones and SNV position occurs for input gene(s). Below exemplar coverage diagram for BRCA1 gene on suitable fragment of chromosome 17:
+
+
+
 
 3. snvScore.py
 ```
