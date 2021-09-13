@@ -40,23 +40,13 @@ docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnve
            input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
 ```
 
-The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for input gene(s). Below exemplar coverage diagram for BRCA1 gene on suitable fragment of chromosome 17:
-
-![BRCA1 coverage](/fig/BRCA1.chr17.HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed.png)
-
-Additionally, as summary log, information about the coverage quality of all pathogenic germline and somatic SNVs, eg.:
-```
-94% of all pathogenic germline SNVs and 98% of all pathogenic somatic SNVs are covered above threshold (15)
-```
-
-``geneCoverage.py`` prepares at least one PDF figure for each input gene. If exones related to the input gene are located in different chromosomes, suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
-
+The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for input gene(s). The code execution prepares at least one PDF figure for each input gene. If exones related to the input gene are located in different chromosomes, suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
 
 In this way, ``geneCoverage.py`` allows verifying the gene coverage in detail and support diagnostician to evaluate the wgs/wes sample for the purposes of further analysis and diagnosis process.
 
 ### 2. snvScore.py
 ```
-SNVScore [-h] SampleBED SNVGermlineTXT SNVSomaticTXT [Threshold]
+snvScore [-h] SampleBED SNVGermlineTXT SNVSomaticTXT [Threshold]
 
 positional arguments:
   SampleBED       Path to the mosdepth per-base BED output
@@ -68,12 +58,28 @@ optional arguments:
   -h, --help      show this help message and exit
 ```
 
-Exemplar ``docker run`` command with snvScore.py execution as follows:
+The ``docker run`` command with ``snvScore.py``execution is as follows:
 ```
 docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./snvScore.py input/SampleBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold
 ```
 
-The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic single nucleotide variants (germline and somatic) in the input sample. All SNVs can be taken from Clinvar repository, user may choose the SNVs from Clinvar, the authors prepared the input table as the collection of all variants that are related to pathogenic SNV. Exemplar coverage report as the results of ``snvScore.py`` is as follows:
+The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic single nucleotide variants (germline and somatic) in the input sample. All SNVs can be taken from Clinvar repository, user may choose the SNVs from Clinvar, the authors prepared the input table as the collection of all variants that are related to pathogenic SNV. 
+
+## Example outputs
+
+### 1. geneCoverage
+
+Below exemplar coverage diagram for BRCA1 gene in HG003 sample from pacbio-hifi (downloaded from Google Storage):
+
+![BRCA1 coverage](/fig/BRCA1.chr17.HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed.png)
+
+Additionally, as summary log:
+```
+94% of all pathogenic germline SNVs and 98% of all pathogenic somatic SNVs are covered above threshold (15)
+```
+
+### 2. snvScore
+Exemplar coverage report as the results of ``snvScore.py`` HG003 sample from pacbio-hifi (downloaded from Google Storage) is as follows:
 ```
 SNV coverage report - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
 
@@ -116,4 +122,4 @@ region count(G)  median(G) std(G) min(G) max(G) count(S)  median(S) std(S) min(S
   chrY        0          0      0      0      0        0          0      0      0      0
 ----------------------------------------------------------------------------------------
 ```
-
+The 3rd line of report file is also a summary log send to the standard output when ``snvScore`` is finished with success.
