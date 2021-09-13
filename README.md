@@ -1,10 +1,10 @@
 # eXNVerify
 
-eXNVerify (Exon and SNV verification) are the Python tools for extraction and verification of genome sequence fragments coverage quality and presents the results of analysis in an intuitive way for genetic diagnostician. Two executables from this repository takes mosdepth- or bedtools-generated BED file as the whole genome/exome sequence coverage and are able to:
+eXNVerify (Exon and SNV verification) includes Python tools for extraction and verification of genome sequence fragments coverage quality and present the results of analysis in an intuitive way for genetic diagnostician. Two executables from this repository takes BED file as the whole genome/exome sequence coverage and are able to:
 1. (geneCoverage.py) generates detailed verfication of pathogenic germline and somatic single nucletide variants for chosen gene(s)
 2. (snvScore.py) analyses the whole genome sequence coverage and evalute all pathogenic germline and SNV coverage quality
 
-Both tools require BED file with the general coverage of WGS/WES sample. In the actual project mosdepth as a fast tool for BAM file analysis was utilized. Detailed description of mosdepth can be found in TODO.
+Both tools require decompressed BED file with the general coverage of WGS/WES sample. In the actual project mosdepth as a fast tool for BAM file analysis and per-base BED file generation is utilized. Detailed description of mosdepth can be found in TODO.
 
 ## Installation
 
@@ -16,7 +16,7 @@ eXNVerify is implemented with Python 3.8 and utilizes popular libraries as `nump
 
 Repository contains two standalone Python executable codes:
 
-1. geneCoverage.py
+### 1. geneCoverage.py
 ```
 geneCoverage [-h]
                     SampleBED RefExomeBED SNVGermlineTXT SNVSomaticTXT
@@ -34,9 +34,10 @@ optional arguments:
   -h, --help      show this help message and exit
 ```
 
-Exemplar docker run coomand with geneCoverage.py execution as follows:
+Exemplar ``docker run`` command with geneCoverage.py execution as follows:
 ```
-docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./geneCoverage.py input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
+docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./geneCoverage.py \
+           input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
 ```
 
 The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for input gene(s). Below exemplar coverage diagram for BRCA1 gene on suitable fragment of chromosome 17:
@@ -48,7 +49,12 @@ Additionally, as summary log, information about the coverage quality of all path
 94% of all pathogenic germline SNVs and 98% of all pathogenic somatic SNVs are covered above threshold (15)
 ```
 
-3. snvScore.py
+``geneCoverage.py`` prepares at least one PDF figure for each input gene. If exones related to the input gene are located in different chromosomes, suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
+
+
+In this way, ``geneCoverage.py`` allows verifying the gene coverage in detail and support diagnostician to evaluate the wgs/wes sample for the purposes of further analysis and diagnosis process.
+
+### 2. snvScore.py
 ```
 SNVScore [-h] SampleBED SNVGermlineTXT SNVSomaticTXT [Threshold]
 
@@ -60,5 +66,54 @@ positional arguments:
 
 optional arguments:
   -h, --help      show this help message and exit
+```
+
+Exemplar ``docker run`` command with snvScore.py execution as follows:
+```
+docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./snvScore.py input/SampleBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold
+```
+
+The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic single nucleotide variants (germline and somatic) in the input sample. All SNVs can be taken from Clinvar repository, user may choose the SNVs from Clinvar, the authors prepared the input table as the collection of all variants that are related to pathogenic SNV. Exemplar coverage report as the results of ``snvScore.py`` is as follows:
+```
+SNV coverage report - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
+
+81% of all pathogenic germline SNVs and 91% of all pathogenic somatic SNVs are covered above threshold (15)
+
+Whole genome coverage:
+median mean  std 1st quartile 3rd quartile  min     max
+    22   32  190           18           26    0   24444
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+('count' is the number of variants in a given region)
+
+region count(G)  median(G) std(G) min(G) max(G) count(S)  median(S) std(S) min(S) max(S)
+----------------------------------------------------------------------------------------
+   ALL    14157         20      6      1     43      310         20      5      9     36
+----------------------------------------------------------------------------------------
+  chr1     1182         21      5      8     37       10         24      3     17     29
+  chr2     1118         22      6      5     39       33         20      5     12     33
+  chr3      774         20      5      8     37       40         21      6     10     33
+  chr4      270         20      7      7     41        6         16      2     15     19
+  chr5      538         21      5      5     36       10         18      4     15     29
+  chr6      511         22      6      4     43        0          0      0      0      0
+  chr7      717         22      5      6     43       13         26      4     21     34
+  chr8      335         23      6      8     37        0          0      0      0      0
+  chr9      479         20      6      2     37        1         27      0     27     27
+ chr10      362         20      6      9     36       32         20      7      9     36
+ chr11      966         19      6      6     36        9         14      6     11     27
+ chr12      709         22      5     10     38       12         23      3     16     25
+ chr13      910         17      5      9     37       26         22      5     11     29
+ chr14      324         23      4      9     34        6         21      4     13     27
+ chr15      533         21      5      8     35        4         17      1     17     20
+ chr16      643         19      6      3     40        1         17      0     17     17
+ chr17     1561         20      4      8     37       88         21      2     14     24
+ chr18      154         20      6     11     35        4         25      2     25     30
+ chr19      720         18      4      7     27       10         12      4      9     20
+ chr20      146         18      5      8     35        0          0      0      0      0
+ chr21      174         14      6      2     28        1         22      0     22     22
+ chr22      181         16      5      1     29        2         18      6     12     24
+  chrX      850         10      4      3     24        2         14      4      9     18
+  chrY        0          0      0      0      0        0          0      0      0      0
+----------------------------------------------------------------------------------------
 ```
 
