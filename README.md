@@ -39,10 +39,14 @@ Exemplar docker run coomand with geneCoverage.py execution as follows:
 docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./geneCoverage.py input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
 ```
 
-The main output of the ``geneCoverage.py`` is the figure with chromosome region where all exones and SNV position occurs for input gene(s). Below exemplar coverage diagram for BRCA1 gene on suitable fragment of chromosome 17:
+The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for input gene(s). Below exemplar coverage diagram for BRCA1 gene on suitable fragment of chromosome 17:
 
-![BRCA1 coverage](BRCA1.chr17.HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed.pdf)
+![BRCA1 coverage](/fig/BRCA1.chr17.HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed.png)
 
+Additionally, as summary log, information about the coverage quality of all pathogenic germline and somatic SNVs, eg.:
+```
+94% of all pathogenic germline SNVs and 98% of all pathogenic somatic SNVs are covered above threshold (15)
+```
 
 3. snvScore.py
 ```
