@@ -1,10 +1,10 @@
 # eXNVerify
 
-eXNVerify (Exon and SNV verification) includes Python tools for extraction and verification of genome sequence fragments coverage quality and present the results of analysis in an intuitive way for genetic diagnostician. Two executables from this repository takes BED file as the whole genome/exome sequence coverage and are able to:
-1. (geneCoverage.py) generates detailed verfication of pathogenic germline and somatic single nucletide variants for chosen gene(s)
-2. (snvScore.py) analyses the whole genome sequence coverage and evalute all pathogenic germline and SNV coverage quality
+eXNVerify (Exon and SNV verification) includes Python-based tools for extraction of genome sequence fragments and verification of coverage quality. Tools wrapped into ``Docker container`` present the results of analysis in an intuitive way for genetic diagnostician. Two executables take BED file as the whole genome/exome sequence coverage and are able to:
+1. (geneCoverage.py) perform detailed verfication of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s),
+2. (snvScore.py) analyse the whole genome sequence coverage and evaluate all pathogenic germline and somatic SNV coverage quality.
 
-Both tools require decompressed BED file with the general coverage of WGS/WES sample. In the actual project mosdepth as a fast tool for BAM file analysis and per-base BED file generation is utilized. Detailed description of mosdepth can be found in TODO.
+Both tools require decompressed BED file with the general coverage of WGS/WES sample. In the actual implementation output of the ``mosdepth`` as a fast tool for BAM file analysis. Output per-base BED file is utilized. Detailed description of mosdepth can be found in TODO.
 
 ## Installation
 
@@ -39,8 +39,9 @@ Exemplar ``docker run`` command with geneCoverage.py execution as follows:
 docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./geneCoverage.py \
            input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
 ```
+User may decide what kind of source information would be processed by ``geneCoverage`` ie. exome reference BED may contain position of exones related to all genes but it is also possible to choose desired subset depending on the need. User may also choose which SNV should be the inputs of the analysis. For the purpose of this project development, two Clinvar-generated tables are prepared separately for germline and somatic pathogenic SNVs. These tables can be easily generated from the ClinVar. In the repository, user may find examples of these tables: they contain all pathogenic SNV for all genes, however, they are limited (using Clinvar filters) to these records which are approved by expert panels or submitted by multiple sources to Clinvar. Thus, two SNV tables saved as txt files contain about 15k SNVs and user may feel free to utilize them in their samples analysis. Optional argument of ``geneCoverage`` is the user-defined threshold value which indicates user-desired coverage quality of the analysed sample. 
 
-The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for input gene(s). The code execution prepares at least one PDF figure for each input gene. If exones related to the input gene are located in different chromosomes, suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
+The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for given gene(s). The code execution prepares at least one PDF figure for each input gene. If exones related to the input gene are located in more than one chromosomee (e.g. PSRR2), suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
 
 In this way, ``geneCoverage.py`` allows verifying the gene coverage in detail and support diagnostician to evaluate the wgs/wes sample for the purposes of further analysis and diagnosis process.
 
@@ -62,6 +63,7 @@ The ``docker run`` command with ``snvScore.py``execution is as follows:
 ```
 docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./snvScore.py input/SampleBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold
 ```
+Similar to the ``geneCoverage``, ``snvScore`` requires Clinvar-generated tables with recors of pathogenic germline and somatic SNVs. User may generate their source tables using Clinvar search tool and filter or utilizes included TXT files in this eXNVerify repository. Optional argument of ``snvScore`` is the user-defined threshold value which indicates user-desired coverage quality of the analysed sample. 
 
 The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic single nucleotide variants (germline and somatic) in the input sample. All SNVs can be taken from Clinvar repository, user may choose the SNVs from Clinvar, the authors prepared the input table as the collection of all variants that are related to pathogenic SNV. 
 
