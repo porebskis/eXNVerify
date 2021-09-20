@@ -2,9 +2,9 @@
 (project still in development stage)
 ...piśmienniczo jeszcze wszystko będzie udoskonalane, na razie natrzaskałem trochę informacji...
 
-eXNVerify (abbreviation of "Exon and SNV verification") includes Python-based tools for extraction of genome sequence fragments and verification of coverage quality. Tools wrapped into ``Docker container`` present the results of analysis in an intuitive way for genetic diagnostician. Two executables take BED file as the whole genome/exome sequence coverage and are able to:
-1. (geneCoverage.py) perform detailed verfication of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s),
-2. (snvScore.py) analyse the whole genome sequence coverage and evaluate all pathogenic germline and somatic SNV coverage quality.
+eXNVerify (abbreviation of "Exon and SNV verification") includes Python-based tools for extraction of genome sequence fragments and verification of coverage quality. Tools wrapped into ``Docker container`` present the results of analysis in an intuitive way for genetic diagnostician. Two executables take BED file as the whole genome/exome sequence coverage and:
+1. (geneCoverage.py) performs detailed verfication in a graphical from of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s),
+2. (snvScore.py) analyses the whole genome sequence coverage and evaluate all pathogenic germline and somatic SNV coverage quality.
 
 Both tools require decompressed BED file with the general coverage of WGS/WES sample. The actual implementation requires output of the ``mosdepth`` as a fast tool for BAM file analysis. Output per-base BED file is utilized. Detailed description of mosdepth can be found in TODO.
 
