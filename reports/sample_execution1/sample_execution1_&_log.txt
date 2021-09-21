@@ -1,0 +1,10 @@
+python ExnVerify.py input/HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed input/Exome_Reference_refined.bed input/SNV_patho_germline.txt input/SNV_patho_somatic.txt 21 BRCA1 BRCA2 TP53 MYH7 PRSS2
+
+ 60% of pathogenic germline SNVs for BRCA1 in chr17 are covered above threshold (21x)
+ 50% of pathogenic  somatic SNVs for BRCA1 in chr17 are covered above threshold (21x)
+ 24% of pathogenic germline SNVs for BRCA2 in chr13 are covered above threshold (21x)
+ 36% of pathogenic  somatic SNVs for BRCA2 in chr13 are covered above threshold (21x)
+ 65% of pathogenic germline SNVs for  TP53 in chr17 are covered above threshold (21x)
+ 60% of pathogenic  somatic SNVs for  TP53 in chr17 are covered above threshold (21x)
+ 95% of pathogenic germline SNVs for  MYH7 in chr14 are covered above threshold (21x)
+100% of pathogenic  somatic SNVs for  MYH7 in chr14 are covered above threshold (21x)

@@ -1,0 +1,16 @@
+geneCoverage - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
+
+Input genes: ['BRCA1', 'BRCA2', 'TP53', 'MYH7', 'PRSS2']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (21x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+ BRCA1  chr17      540         21      3      9     26   60%       18         20      2     17     24   50%
+ BRCA2  chr13      650         16      5     11     30   24%       11         17      4     11     24   36%
+  TP53  chr17       89         21      2     14     23   65%       68         21      2     14     23   60%
+  MYH7  chr14       59         24      3     14     28   95%        1         27      0     27     27  100%
+ PRSS2   chr7        0          0      0      0      0    0%        0          0      0      0      0    0%
+-----------------------------------------------------------------------------------------------------------
