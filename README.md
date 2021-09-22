@@ -7,7 +7,7 @@ eXNVerify (abbreviation from *eXon and SNV Verification*) includes Python-based 
 
 Both tools prepare also the text report of the analysis which focus on calculation of the percentage of SNVs that are covered with a user-defined level.
 
-## Dependencies - reference files
+## Dependencies & reference files
 
 Both tools require decompressed BED file with the general coverage of wgs/wes sample. The actual implementation requires BED output of the ``mosdepth`` that is a fast tool for BAM file analysis. Detailed description of mosdepth and generation of per-base BED file can be found in [mosdepth documentation](https://github.com/brentp/mosdepth).
 
