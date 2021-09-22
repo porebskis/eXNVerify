@@ -89,7 +89,7 @@ The output of ``snvScore.py`` is the report TXT file with coverage information a
 
 ### 1. geneCoverage
 
-Below exemplar coverage diagram for BRCA1 gene in HG003 sample from pacbio-hifi (downloaded from Google Storage):
+Below exemplar coverage diagram for BRCA1 gene in HG003 sample generated with LR whole genome sequencing using PacBio HiFi downloaded from TODO (below PDF converted to PNG is presented for the purpose of this markdown file):
 
 ![BRCA1 coverage](/fig/BRCA1.chr17.HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed.png)
 
