@@ -2,17 +2,17 @@
 (project still in development stage)
 ...piśmienniczo jeszcze wszystko będzie udoskonalane, na razie natrzaskałem trochę informacji...
 
-eXNVerify (abbreviation of "Exon and SNV verification") includes Python-based tools for extraction of genome sequence fragments and verification of coverage quality. Tools wrapped into ``Docker container`` present the results of analysis in an intuitive way for genetic diagnostician. Two executables take BED file as the whole genome/exome sequence coverage and:
-1. (geneCoverage.py) performs detailed verfication in a graphical from of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s),
+eXNVerify (abbreviation from *eXon and SNV Verification*) includes Python-based tools for extraction of clinically important genome sequence regions and verification of their coverage quality. Prepared tools wrapped into ready-to-go ``Docker container`` present the results of analysis in an intuitive way for genetic diagnostician. Two executables take BED file as the whole genome/exome sequence coverage and:
+1. (geneCoverage.py) performs detailed verfication of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s) in a graphical from,
 2. (snvScore.py) analyses the whole genome sequence coverage and evaluate all pathogenic germline and somatic SNV coverage quality.
 
-Both tools require decompressed BED file with the general coverage of WGS/WES sample. The actual implementation requires output of the ``mosdepth`` as a fast tool for BAM file analysis. Output per-base BED file is utilized. Detailed description of mosdepth can be found in TODO.
+Both tools require decompressed BED file with the general coverage of wgs/wes sample. The actual implementation uses output of the ``mosdepth`` that is a fast tool for BAM file analysis. Detailed description of mosdepth and generation of per-base BED file can be found in TODO.
 
 ## Installation
 
-eXNVerify is implemented with Python 3.8 and utilizes popular libraries as `numpy`, `pandas`, and `matplotlib`. It is prepared for Unix operating systems and it is available to pull from DockerHub and run as a standalone Docker container:
+eXNVerify works with Python 3.8 and utilizes popular libraries as `numpy`, `pandas`, and `matplotlib` that are estabilished in standalone ``docker container``. It is prepared for Unix operating systems and it is available to pull from DockerHub repository:
 
-`docker pull porebskis/exnverify:0.89b`
+`docker pull porebskis/exnverify:0.89b` TODO
 
 ## Usage
 
@@ -80,6 +80,10 @@ Similar to the ``geneCoverage``, ``snvScore`` requires Clinvar-generated tables 
 
 The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic single nucleotide variants (germline and somatic) in the input sample. All SNVs can be taken from Clinvar repository, user may choose the SNVs from Clinvar, the authors prepared the input table as the collection of all variants that are related to pathogenic SNV. 
 
+## Dependencies - reference files
+
+Using ``geneCoverage`` or ``snvScore`` requires reference information about pathogenic germline and somatic SNVs (as Clinvar-generated TXT tables), and Exom reference (as BED file). In this repository, utilized Exom reference BED and all pathogenic somatic and germline SNV tables are included. User may prepare their own references, however they needs to be prepared accordingly: ``snvScore`` would analyze all SNV positions included in reference files, but analysing coverage of particular gene with ``geneCoverage`` requires suitable gene-related SNV and gene-related exon positions.
+
 ## Example outputs
 
 ### 1. geneCoverage
@@ -88,10 +92,28 @@ Below exemplar coverage diagram for BRCA1 gene in HG003 sample from pacbio-hifi 
 
 ![BRCA1 coverage](/fig/BRCA1.chr17.HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed.png)
 
-Additionally, as summary log:
+Since ``geneCoverage`` is prepared to analyse coverages of more than one genes, it generates suitable number of figures and save summary of SNV coverage quality in TXT report. Example report generated with ``geneCoverage`` is:
+
 ```
-94% of all pathogenic germline SNVs and 98% of all pathogenic somatic SNVs are covered above threshold (15)
+geneCoverage - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
+
+Input genes: ['BRCA1', 'BRCA2', 'TP53', 'MYH7', 'PRSS2']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (21x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+ BRCA1  chr17      540         21      3      9     26   60%       18         20      2     17     24   50%
+ BRCA2  chr13      650         16      5     11     30   24%       11         17      4     11     24   36%
+  TP53  chr17       89         21      2     14     23   65%       68         21      2     14     23   60%
+  MYH7  chr14       59         24      3     14     28   95%        1         27      0     27     27  100%
+ PRSS2   chr7        0          0      0      0      0    0%        0          0      0      0      0    0%
+-----------------------------------------------------------------------------------------------------------
+
 ```
+Percentage values of above table are also sent to standard output if ``docker run`` is executed without `-d` option (then, container work in detached/background mode).
 
 ### 2. snvScore
 Exemplar coverage report as the results of ``snvScore.py`` HG003 sample from pacbio-hifi (downloaded from Google Storage) is as follows:
