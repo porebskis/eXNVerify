@@ -38,8 +38,14 @@ optional arguments:
 
 Exemplar ``docker run`` command with geneCoverage.py execution as follows:
 ```
-docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./geneCoverage.py \
-           input/SampleBED input/RefExomeBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold GeneName_s
+docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b \
+           ./geneCoverage.py 
+           input/SampleBED \
+           input/RefExomeBED \
+           input/SNVGermlineTXT \
+           input/SNVSomaticTXT \
+           Threshold \
+           GeneName_s
 ```
 User may decide what kind of source information would be processed by ``geneCoverage`` ie. exome reference BED may contain position of exones related to all genes but it is also possible to choose desired subset depending on the need. User may also choose which SNV should be the inputs of the analysis. For the purpose of this project development, two Clinvar-generated tables are prepared separately for germline and somatic pathogenic SNVs. These tables can be easily generated from the ClinVar. In the repository, user may find examples of these tables: they contain all pathogenic SNV for all genes, however, they are limited (using Clinvar filters) to these records which are approved by expert panels or submitted by multiple sources to Clinvar. Thus, two SNV tables saved as txt files contain about 15k SNVs and user may feel free to utilize them in their samples analysis. Optional argument of ``geneCoverage`` is the user-defined threshold value which indicates user-desired coverage quality of the analysed sample. 
 
@@ -63,7 +69,12 @@ optional arguments:
 
 The ``docker run`` command with ``snvScore.py``execution is as follows:
 ```
-docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b ./snvScore.py input/SampleBED input/SNVGermlineTXT input/SNVSomaticTXT Threshold
+docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b \
+           ./snvScore.py \
+           input/SampleBED \
+           input/SNVGermlineTXT \
+           input/SNVSomaticTXT \
+           Threshold
 ```
 Similar to the ``geneCoverage``, ``snvScore`` requires Clinvar-generated tables with recors of pathogenic germline and somatic SNVs. User may generate their source tables using Clinvar search tool and filter or utilizes included TXT files in this eXNVerify repository. Optional argument of ``snvScore`` is the user-defined threshold value which indicates user-desired coverage quality of the analysed sample. 
 
