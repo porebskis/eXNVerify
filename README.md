@@ -1,16 +1,22 @@
 # eXNVerify
-(project still in development stage)
-...piśmienniczo jeszcze wszystko będzie udoskonalane, na razie natrzaskałem trochę informacji...
+*(project still in development stage)*
 
-eXNVerify (abbreviation from *eXon and SNV Verification*) includes Python-based tools for extraction of clinically important genome sequence regions and verification of their coverage quality. Prepared tools wrapped into ready-to-go ``Docker container`` present the results of analysis in an intuitive way for genetic diagnostician. Two executables take BED file as the whole genome/exome sequence coverage and:
-1. (geneCoverage.py) performs detailed verfication of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s) in a graphical from,
-2. (snvScore.py) analyses the whole genome sequence coverage and evaluate all pathogenic germline and somatic SNV coverage quality.
+eXNVerify (abbreviation from *eXon and SNV Verification*) includes Python-based tools for extraction of clinically important genome sequence regions and verification of their coverage quality. Prepared tools wrapped into ready-to-go ``Docker container`` allow presenting the results of analysis in an intuitive way for genetic diagnostician. Two independent executables take BED file as the whole genome/exome sequence coverage and:
+1. ``geneCoverage.py`` performs detailed verfication of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s) in a graphical from,
+2. ``snvScore.py`` analyses the whole genome sequence coverage and evaluate all pathogenic germline and somatic SNV coverage quality.
 
-Both tools require decompressed BED file with the general coverage of wgs/wes sample. The actual implementation uses output of the ``mosdepth`` that is a fast tool for BAM file analysis. Detailed description of mosdepth and generation of per-base BED file can be found in TODO.
+Both tools prepare also the text report of the analysis which focus on calculation of the percentage of SNVs that are covered with a user-defined level.
+
+## Dependencies - reference files
+
+Both tools require decompressed BED file with the general coverage of wgs/wes sample. The actual implementation requires BED output of the ``mosdepth`` that is a fast tool for BAM file analysis. Detailed description of mosdepth and generation of per-base BED file can be found in TODO.
+
+Using ``geneCoverage`` or ``snvScore`` requires reference information about pathogenic germline and somatic SNVs (as Clinvar-generated table files), and exom reference (BED file format). In this repository, utilized exom reference BED file and all pathogenic somatic and germline SNV tables are included. User may prepare their own references, however they needs to be prepared accordingly: ``snvScore`` would analyze all SNV positions included in reference files, but analysing coverage of particular gene with ``geneCoverage`` requires suitable gene-related SNV and gene-related exon positions.
+
 
 ## Installation
 
-eXNVerify works with Python 3.8 and utilizes popular libraries as `numpy`, `pandas`, and `matplotlib` that are estabilished in standalone ``docker container``. It is prepared for Unix operating systems and it is available to pull from DockerHub repository:
+eXNVerify works with Python 3.8 and is estabilished in standalone and ready-to-go ``docker container``. It is prepared for Unix operating systems and it is available to pull from DockerHub repository:
 
 `docker pull porebskis/exnverify:0.89b` TODO
 
@@ -47,9 +53,9 @@ docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnve
            Threshold \
            GeneName_s
 ```
-User may decide what kind of source information would be processed by ``geneCoverage`` ie. exome reference BED may contain position of exones related to all genes but it is also possible to choose desired subset depending on the need. User may also choose which SNV should be the inputs of the analysis. For the purpose of this project development, two Clinvar-generated tables are prepared separately for germline and somatic pathogenic SNVs. These tables can be easily generated from the ClinVar. In the repository, user may find examples of these tables: they contain all pathogenic SNV for all genes, however, they are limited (using Clinvar filters) to these records which are approved by expert panels or submitted by multiple sources to Clinvar. Thus, two SNV tables saved as txt files contain about 15k SNVs and user may feel free to utilize them in their samples analysis. Optional argument of ``geneCoverage`` is the user-defined threshold value which indicates user-desired coverage quality of the analysed sample. 
+For the purpose of this project development, two ClinVar-generated tables are prepared separately for germline and somatic pathogenic SNVs. These tables can be easily generated from the ClinVar. In this repository, user may find examples of these tables. They contain all pathogenic SNV for all genes, however, they are limited (using ClinVar filters) to these records which are approved by expert panel or submitted by multiple sources to ClinVar. Thus, two SNV tables saved as TXT contain about 15k SNVs and user may feel free to utilize them in their samples analysis. 
 
-The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for given gene(s). The code execution prepares at least one PDF figure for each input gene. If exones related to the input gene are located in more than one chromosomee (e.g. PSRR2), suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
+The main output of the ``geneCoverage.py`` is the PDF figure with chromosome region where all exones and SNV position occurs for given gene(s). The code execution prepares at least one PDF figure for each input gene. If exones related to the input gene are located in more than one chromosomee, suitable number of figures is generated. If the input gene is not listed in ``RefExomeBED`` file, analysis is not performed. 
 
 In this way, ``geneCoverage.py`` allows verifying the gene coverage in detail and support diagnostician to evaluate the wgs/wes sample for the purposes of further analysis and diagnosis process.
 
@@ -76,13 +82,8 @@ docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnve
            input/SNVSomaticTXT \
            Threshold
 ```
-Similar to the ``geneCoverage``, ``snvScore`` requires Clinvar-generated tables with recors of pathogenic germline and somatic SNVs. User may generate their source tables using Clinvar search tool and filter or utilizes included TXT files in this eXNVerify repository. Optional argument of ``snvScore`` is the user-defined threshold value which indicates user-desired coverage quality of the analysed sample. 
 
-The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic single nucleotide variants (germline and somatic) in the input sample. All SNVs can be taken from Clinvar repository, user may choose the SNVs from Clinvar, the authors prepared the input table as the collection of all variants that are related to pathogenic SNV. 
-
-## Dependencies - reference files
-
-Using ``geneCoverage`` or ``snvScore`` requires reference information about pathogenic germline and somatic SNVs (as Clinvar-generated TXT tables), and Exom reference (as BED file). In this repository, utilized Exom reference BED and all pathogenic somatic and germline SNV tables are included. User may prepare their own references, however they needs to be prepared accordingly: ``snvScore`` would analyze all SNV positions included in reference files, but analysing coverage of particular gene with ``geneCoverage`` requires suitable gene-related SNV and gene-related exon positions.
+The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic SNVs (germline and somatic) in the input sample. User may use avaliable reference files of prepare their own collection of SNVs for the purpose of this analysis.
 
 ## Example outputs
 
