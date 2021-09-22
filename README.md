@@ -9,7 +9,7 @@ Both tools prepare also the text report of the analysis which focus on calculati
 
 ## Dependencies & reference files
 
-Both tools require decompressed BED file with the general coverage of wgs/wes sample. The actual implementation requires BED output of the ``mosdepth`` that is a fast tool for BAM file analysis. Detailed description of mosdepth and generation of per-base BED file can be found in [mosdepth documentation](https://github.com/brentp/mosdepth).
+Both tools require decompressed BED file with the general coverage of wgs/wes sample. The actual implementation testing utilized BED output of the ``mosdepth`` that is a fast tool for BAM file analysis. Detailed description of mosdepth and generation of per-base BED file can be found in [mosdepth documentation](https://github.com/brentp/mosdepth).
 
 Using ``geneCoverage`` or ``snvScore`` requires reference information about pathogenic germline and somatic SNVs (as Clinvar-generated table files), and exom reference (BED file format). In this repository, utilized exom reference BED file and all pathogenic somatic and germline SNV tables are included. User may prepare their own references, however they needs to be prepared accordingly: ``snvScore`` would analyze all SNV positions included in reference files, but analysing coverage of particular gene with ``geneCoverage`` requires suitable gene-related SNV and gene-related exon positions.
 
