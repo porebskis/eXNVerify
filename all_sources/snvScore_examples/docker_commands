@@ -1,9 +1,14 @@
-docker run -dit --rm -v ~/data/pacbio_hifi/:/input -v ~/data/pacbio_hifi/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 ./snvScore.py input/HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 15
+docker run -dit --rm -v ~/data/pacbio_hifi/:/input -v ~/data/pacbio_hifi/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 \
+./snvScore.py input/HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 15
 
-docker run -dit --rm -v ~/data/pacbio_hifi/:/input -v ~/data/pacbio_hifi/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 ./snvScore.py input/HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 21
+docker run -dit --rm -v ~/data/pacbio_hifi/:/input -v ~/data/pacbio_hifi/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 \
+./snvScore.py input/HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 21
 
-docker run -dit --rm -v ~/data/hiseqx_wgs_pcr_free/:/input -v ~/data/hiseqx_wgs_pcr_free/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 ./snvScore.py input/HG003.hiseqx.pcr-free.20x.dedup.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 15
+docker run -dit --rm -v ~/data/hiseqx_wgs_pcr_free/:/input -v ~/data/hiseqx_wgs_pcr_free/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 \
+./snvScore.py input/HG003.hiseqx.pcr-free.20x.dedup.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 15
 
-docker run -dit --rm -v ~/data/hiseqx_wgs_pcr_free/:/input -v ~/data/hiseqx_wgs_pcr_free/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 ./snvScore.py input/HG003.hiseqx.pcr-free.20x.dedup.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 20
+docker run -dit --rm -v ~/data/hiseqx_wgs_pcr_free/:/input -v ~/data/hiseqx_wgs_pcr_free/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 \
+./snvScore.py input/HG003.hiseqx.pcr-free.20x.dedup.grch38.bam.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 20
 
-docker run -dit --rm -v ~/data/novaseq_wes_agilent/:/input -v ~/data/novaseq_wes_agilent/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 ./snvScore.py input/HG003.novaseq.wes-agilent.100x.dedup.grch38.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 100
+docker run -dit --rm -v ~/data/novaseq_wes_agilent/:/input -v ~/data/novaseq_wes_agilent/:/output -v ~/data/refs/:/refs porebskis/exnverify:1.0 \
+./snvScore.py input/HG003.novaseq.wes-agilent.100x.dedup.grch38.per-base.bed refs/SNV_patho_germline.txt refs/SNV_patho_somatic.txt 100
