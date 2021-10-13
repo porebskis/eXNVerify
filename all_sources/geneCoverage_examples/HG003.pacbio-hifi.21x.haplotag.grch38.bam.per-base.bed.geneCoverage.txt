@@ -1,0 +1,19 @@
+geneCoverage - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
+
+Input genes: ['MSH6', 'TP53', 'ABCA4', 'PDGFRB', 'LEMD2', 'CFTR', 'HTT', 'DMD']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (21x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+  MSH6   chr2      118         30      4     14     33   93%        4         30      1     30     33  100%
+  TP53  chr17       89         21      2     14     23   65%       68         21      2     14     23   60%
+ ABCA4   chr1      166         22      3     16     28   68%        0          0      0      0      0    0%
+PDGFRB   chr5        1         17      0     17     17    0%        1         17      0     17     17    0%
+ LEMD2   chr6        0          0      0      0      0    0%        0          0      0      0      0    0%
+  CFTR   chr7      192         27      4     19     39   94%        0          0      0      0      0    0%
+   HTT   chr4        0          0      0      0      0    0%        0          0      0      0      0    0%
+   DMD   chrX      144         11      4      5     18    0%        0          0      0      0      0    0%
+-----------------------------------------------------------------------------------------------------------
