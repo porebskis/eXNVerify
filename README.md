@@ -18,7 +18,7 @@ Using ``geneCoverage`` or ``snvScore`` requires reference information about path
 
 eXNVerify works with Python 3.8 and is estabilished in standalone and ready-to-go ``docker container``. It is prepared for Unix operating systems and it is available to pull from [this DockerHub repository](https://hub.docker.com/repository/docker/porebskis/exnverify):
 
-`docker pull porebskis/exnverify:0.89b` TODO
+`docker pull porebskis/exnverify:1.0`
 
 ## Usage
 
@@ -44,7 +44,7 @@ optional arguments:
 
 Exemplar ``docker run`` command with geneCoverage.py execution as follows:
 ```
-docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b \
+docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:1.0 \
            ./geneCoverage.py 
            input/SampleBED \
            input/RefExomeBED \
@@ -75,7 +75,7 @@ optional arguments:
 
 The ``docker run`` command with ``snvScore.py``execution is as follows:
 ```
-docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:0.89b \
+docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnverify:1.0 \
            ./snvScore.py \
            input/SampleBED \
            input/SNVGermlineTXT \
