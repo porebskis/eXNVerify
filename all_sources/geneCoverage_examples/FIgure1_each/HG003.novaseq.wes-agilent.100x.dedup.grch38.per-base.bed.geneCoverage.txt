@@ -1,0 +1,12 @@
+geneCoverage - HG003.novaseq.wes-agilent.100x.dedup.grch38.per-base.bed
+
+Input genes: ['BRCA1']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (100x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+ BRCA1  chr17      540        228     88     59    539   96%       18        209     68    103    359  100%
+-----------------------------------------------------------------------------------------------------------
