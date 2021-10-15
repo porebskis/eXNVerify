@@ -1,0 +1,63 @@
+geneCoverage - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
+
+Input genes: ['MSH6', 'TP53', 'ABCA4', 'PDGFRB', 'LEMD2', 'CFTR', 'HTT', 'DMD']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (21x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+  MSH6   chr2      118         30      4     14     33   93%        4         30      1     30     33  100%
+  TP53  chr17       89         21      2     14     23   65%       68         21      2     14     23   60%
+ ABCA4   chr1      166         22      3     16     28   68%        0          0      0      0      0    0%
+PDGFRB   chr5        1         17      0     17     17    0%        1         17      0     17     17    0%
+ LEMD2   chr6        0          0      0      0      0    0%        0          0      0      0      0    0%
+  CFTR   chr7      192         27      4     19     39   94%        0          0      0      0      0    0%
+   HTT   chr4        0          0      0      0      0    0%        0          0      0      0      0    0%
+   DMD   chrX      144         11      4      5     18    0%        0          0      0      0      0    0%
+-----------------------------------------------------------------------------------------------------------
+
+
+geneCoverage - HG003.hiseqx.pcr-free.20x.dedup.grch38.bam.per-base.bed
+
+Input genes: ['MSH6', 'TP53', 'ABCA4', 'PDGFRB', 'LEMD2', 'CFTR', 'HTT', 'DMD']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (20x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+  MSH6   chr2      118         25      5     14     39   90%        4         24      2     22     28  100%
+  TP53  chr17       89         24      6     16     41   85%       68         23      6     17     41   87%
+ ABCA4   chr1      166         25      6     13     44   89%        0          0      0      0      0    0%
+PDGFRB   chr5        1         32      0     32     32  100%        1         32      0     32     32  100%
+ LEMD2   chr6        0          0      0      0      0    0%        0          0      0      0      0    0%
+  CFTR   chr7      192         24      5     16     38   85%        0          0      0      0      0    0%
+   HTT   chr4        0          0      0      0      0    0%        0          0      0      0      0    0%
+   DMD   chrX      144         12      4      4     21    2%        0          0      0      0      0    0%
+-----------------------------------------------------------------------------------------------------------
+
+
+geneCoverage - HG003.novaseq.wes-agilent.100x.dedup.grch38.per-base.bed
+
+Input genes: ['MSH6', 'TP53', 'ABCA4', 'PDGFRB', 'LEMD2', 'CFTR', 'HTT', 'DMD']
+
+Pathogenic (G - germline, S - somatic) SNV coverage:
+- 'count' is the number of variants in a given region
+- 'AT' is the percentage of SNV coverage above threshold (100x)
+
+  gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
+-----------------------------------------------------------------------------------------------------------
+  MSH6   chr2      118        176     62     79    434   96%        4        214    108    150    432  100%
+  TP53  chr17       89        183     77     88    475   83%       68        193     71     88    304   85%
+ ABCA4   chr1      166        125     65      0    476   63%        0          0      0      0      0    0%
+PDGFRB   chr5        1        130      0    130    130  100%        1        130      0    130    130  100%
+ LEMD2   chr6        0          0      0      0      0    0%        0          0      0      0      0    0%
+  CFTR   chr7      192        142    174      0    798   78%        0          0      0      0      0    0%
+   HTT   chr4        0          0      0      0      0    0%        0          0      0      0      0    0%
+   DMD   chrX      144         70     36      0    214   17%        0          0      0      0      0    0%
+-----------------------------------------------------------------------------------------------------------
+
+
