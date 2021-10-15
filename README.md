@@ -1,3 +1,4 @@
+![repocard_small](https://user-images.githubusercontent.com/89299093/137495740-c7b9d85a-e141-4da4-acc4-7a96514c2661.png)
 
 
 eXNVerify (abbreviation from *eXon and SNV Verification*) includes Python-based tools for extraction of clinically important genome sequence regions and verification of their coverage quality. Prepared tools wrapped into ready-to-go ``Docker container`` allow presenting the results of analysis in an intuitive way for genetic diagnostician. Two independent executables take BED file as the whole genome/exome sequence coverage and:
