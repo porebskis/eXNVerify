@@ -87,6 +87,8 @@ docker run -it --rm -v ~/hostpath/:/input -v ~/hostpath/:/output porebskis/exnve
 
 The output of ``snvScore.py`` is the report TXT file with coverage information about all pathogenic SNVs (germline and somatic) in the input sample. User may use avaliable reference files of prepare their own collection of SNVs for the purpose of this analysis.
 
+This repo contains exemplar outputs of long-read, short-read genome sequencing as well as short-read whole exome sequencing data. ``geneCoverage`` has been executed for analysis several genes higly relevant for medical genetics and cancer genomics: MSH6, TP53, ABCA4, PDGFRB, LEMD2, CFTR, HTT, DMD and one of the most popular gene in cancer diagnosis, BRCA1. Moreover, ``snvScore.py`` has beed utilized to evaluate samples and their coverage of all ClinVar-reported single nucleotide variants.
+
 ## Example outputs
 
 ### 1. geneCoverage
