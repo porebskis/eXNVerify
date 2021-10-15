@@ -1,5 +1,7 @@
-![repocard_small](https://user-images.githubusercontent.com/89299093/137495740-c7b9d85a-e141-4da4-acc4-7a96514c2661.png)
-
+<p align="center">
+<!--<img src="https://user-images.githubusercontent.com/89299093/137496202-267e32e3-2e8e-4a89-97ef-ffdccb4947db.png"> -->
+<img src="https://user-images.githubusercontent.com/89299093/137496642-8fd97302-99b0-48f8-9c30-087442661836.png">
+</p>
 
 eXNVerify (abbreviation from *eXon and SNV Verification*) includes Python-based tools for extraction of clinically important genome sequence regions and verification of their coverage quality. Prepared tools wrapped into ready-to-go ``Docker container`` allow presenting the results of analysis in an intuitive way for genetic diagnostician. Two independent executables take BED file as the whole genome/exome sequence coverage and:
 1. ``geneCoverage.py`` performs detailed verfication of pathogenic germline and somatic single nucletide variants (SNV) for chosen gene(s) in a graphical from,
