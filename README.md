@@ -95,21 +95,24 @@ Below exemplar coverage diagram for BRCA1 gene in HG003 sample generated with LR
 Since ``geneCoverage`` is prepared to analyse coverages of more than one genes, it generates suitable number of figures and save summary of SNV coverage quality in TXT report. Example report generated with ``geneCoverage`` is:
 
 ```
-geneCoverage - HG003.pacbio-hifi.21x.haplotag.grch38.bam.per-base.bed
+geneCoverage - HG003.hiseqx.pcr-free.20x.dedup.grch38.bam.per-base.bed
 
-Input genes: ['BRCA1', 'BRCA2', 'TP53', 'MYH7', 'PRSS2']
+Input genes: ['MSH6', 'TP53', 'ABCA4', 'PDGFRB', 'LEMD2', 'CFTR', 'HTT', 'DMD']
 
 Pathogenic (G - germline, S - somatic) SNV coverage:
 - 'count' is the number of variants in a given region
-- 'AT' is the percentage of SNV coverage above threshold (21x)
+- 'AT' is the percentage of SNV coverage above threshold (20x)
 
   gene    chr count(G)  median(G) std(G) min(G) max(G) AT(G) count(S)  median(S) std(S) min(S) max(S) AT(S)
 -----------------------------------------------------------------------------------------------------------
- BRCA1  chr17      540         21      3      9     26   60%       18         20      2     17     24   50%
- BRCA2  chr13      650         16      5     11     30   24%       11         17      4     11     24   36%
-  TP53  chr17       89         21      2     14     23   65%       68         21      2     14     23   60%
-  MYH7  chr14       59         24      3     14     28   95%        1         27      0     27     27  100%
- PRSS2   chr7        0          0      0      0      0    0%        0          0      0      0      0    0%
+  MSH6   chr2      118         25      5     14     39   90%        4         24      2     22     28  100%
+  TP53  chr17       89         24      6     16     41   85%       68         23      6     17     41   87%
+ ABCA4   chr1      166         25      6     13     44   89%        0          0      0      0      0    0%
+PDGFRB   chr5        1         32      0     32     32  100%        1         32      0     32     32  100%
+ LEMD2   chr6        0          0      0      0      0    0%        0          0      0      0      0    0%
+  CFTR   chr7      192         24      5     16     38   85%        0          0      0      0      0    0%
+   HTT   chr4        0          0      0      0      0    0%        0          0      0      0      0    0%
+   DMD   chrX      144         12      4      4     21    2%        0          0      0      0      0    0%
 -----------------------------------------------------------------------------------------------------------
 
 ```
