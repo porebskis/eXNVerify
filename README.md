@@ -18,7 +18,7 @@ Using ``geneCoverage`` or ``snvScore`` requires reference information about path
 
 ## Installation
 
-eXNVerify works with Python 3.8 and is estabilished in standalone and ready-to-go ``docker container``. It is prepared for Unix operating systems and it is available to pull from [this DockerHub repository](https://hub.docker.com/repository/docker/porebskis/exnverify):
+eXNVerify works with Python 3.8 and is estabilished in standalone and ready-to-go ``docker container``. It is prepared for Unix operating systems and it is available to pull from [this DockerHub repository](https://hub.docker.com/r/porebskis/exnverify):
 
 `docker pull porebskis/exnverify:1.0`
 
